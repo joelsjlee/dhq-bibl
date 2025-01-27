@@ -27,7 +27,6 @@ def extract_bibl(file):
     for listbibl in listbibl_tags:
         # Find all <bibl> tags within the current <listbibl> element
         bibl_tags = listbibl.xpath('.//tei:bibl', namespaces=namespaces)
-        
         for bibl in bibl_tags:
             # grab the xml_id, label, and titles
             xml_id = bibl.get('xml:id')
@@ -52,12 +51,14 @@ def s2_request(bibl_data):
         query_params = {
             "query": bibl['titles_quotes'] if bibl['titles_quotes'] else None,
             "fields": "title,authors,publicationDate",
-            # "year": "-2022" <- This could be useful if we can get the year standardized for each citation?
+            # "year": "-2022" <- This could be useful if we can get the year 
+            # standardized for each citation?
         }
         logging.info("Requested Title: %s", bibl['titles_quotes'][0] if bibl['titles_quotes'] else None)
         # GET request trying to match the title. I was seeing in many (but not all) 
         # cases the title was in the <title rend:quotes> tag
-        response = requests.get("https://api.semanticscholar.org/graph/v1/paper/search/match", params=query_params, timeout=10)
+        response = requests.get("https://api.semanticscholar.org/graph/v1/paper/search/match",
+                                params=query_params, timeout=10)
         # Check response status
         if response.status_code == 200:
             response_data = response.json()
