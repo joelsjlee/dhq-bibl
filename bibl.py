@@ -22,8 +22,6 @@ def extract_bibl(file):
 
     # Find all <listBibl> tags
     listbibl_tags = tree.xpath('.//tei:listBibl', namespaces=namespaces)
-    print(listbibl_tags)
-    print(type(listbibl_tags))
     # Create bibl_data list
     bibl_data = []
     counter = 0
@@ -32,8 +30,8 @@ def extract_bibl(file):
         # Find all <bibl> tags within the current <listbibl> element
         bibl_tags = listbibl.xpath('.//tei:bibl', namespaces=namespaces)
         for bibl in bibl_tags:
-            # grab the xml_id, label, and titles
-            bibl_id = Path(file).stem + '_ref_' + str(counter)
+            # grab the xml_id, label, and titles, and create a ref_id
+            ref_id = Path(file).stem + '_ref_' + str(counter)
             counter += 1
             xml_id = bibl.get('xml:id')
             label = bibl.get('label') 
@@ -41,7 +39,7 @@ def extract_bibl(file):
             titles_ital = bibl.xpath('.//tei:title[@rend="italic"]', namespaces=namespaces)
             # create dictionary object for the fields
             bibl_entry = {
-                'ref_id': bibl_id,
+                'ref_id': ref_id,
                 'xml_id': xml_id,
                 'label': label,
                 'titles_quotes': [re.sub(r'\s+', ' ', title.text).strip() for title in titles_quotes],
@@ -72,7 +70,6 @@ def s2_request(bibl_data):
             # If we get a match via the title, we have to make another call with the paperID
             # to retrieve the BibTeX
             paper_id = response_data['data'][0]['paperId']
-            print(paper_id)
             query_params = {
                 "fields": "citationStyles"
             }
