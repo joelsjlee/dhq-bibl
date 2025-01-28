@@ -1,5 +1,6 @@
 ''' File to explore bibl extraction from DHQ articles and Semantic Scholar API reconciliation'''
 from lxml import etree
+from pathlib import Path
 import re
 import requests
 import argparse
@@ -21,20 +22,26 @@ def extract_bibl(file):
 
     # Find all <listBibl> tags
     listbibl_tags = tree.xpath('.//tei:listBibl', namespaces=namespaces)
+    print(listbibl_tags)
+    print(type(listbibl_tags))
     # Create bibl_data list
     bibl_data = []
+    counter = 0
     # Find the content of each <listBibl> tag
     for listbibl in listbibl_tags:
         # Find all <bibl> tags within the current <listbibl> element
         bibl_tags = listbibl.xpath('.//tei:bibl', namespaces=namespaces)
         for bibl in bibl_tags:
             # grab the xml_id, label, and titles
+            bibl_id = Path(file).stem + '_ref_' + str(counter)
+            counter += 1
             xml_id = bibl.get('xml:id')
             label = bibl.get('label') 
             titles_quotes = bibl.xpath('.//tei:title[@rend="quotes"]', namespaces=namespaces)
             titles_ital = bibl.xpath('.//tei:title[@rend="italic"]', namespaces=namespaces)
             # create dictionary object for the fields
             bibl_entry = {
+                'ref_id': bibl_id,
                 'xml_id': xml_id,
                 'label': label,
                 'titles_quotes': [re.sub(r'\s+', ' ', title.text).strip() for title in titles_quotes],
@@ -62,13 +69,23 @@ def s2_request(bibl_data):
         # Check response status
         if response.status_code == 200:
             response_data = response.json()
-        # Printing data here but maybe we do some process
+            # If we get a match via the title, we have to make another call with the paperID
+            # to retrieve the BibTeX
+            paper_id = response_data['data'][0]['paperId']
+            print(paper_id)
+            query_params = {
+                "fields": "citationStyles"
+            }
+            detail_response = requests.get(f"https://api.semanticscholar.org/graph/v1/paper/{paper_id}", params=query_params, timeout=10)
+            detail_data = detail_response.json()
+            # Logging data here but maybe we do some process
             logging.info("Response Received: %s", response_data)
+            logging.info("Detail Response: %s", detail_data)
         else:
             logging.info("Response Failed: %s: %s", response.status_code, response.text)
-        # Was getting 429 error of too many requests. 
+        # Was getting 429 error of too many requests.
         # Temporary stop gap but would probably need exponential backoff and retry
-        time.sleep(5) 
+        time.sleep(5)
 
 def main():
     ''' Main function '''
