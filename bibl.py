@@ -1,6 +1,7 @@
 ''' File to explore bibl extraction from DHQ articles and Semantic Scholar API reconciliation'''
 from lxml import etree
 from pathlib import Path
+import json
 import re
 import requests
 import argparse
@@ -41,9 +42,9 @@ def extract_bibl(file):
             bibl_entry = {
                 'ref_id': ref_id,
                 'xml_id': xml_id,
-                'label': label,
-                'titles_quotes': [re.sub(r'\s+', ' ', title.text).strip() for title in titles_quotes],
-                'titles_ital': [re.sub(r'\s+', ' ', title.text).strip() for title in titles_ital],
+                'xml_label': label,
+                'xml_titles_quotes': [re.sub(r'\s+', ' ', title.text).strip() for title in titles_quotes],
+                'xml_titles_ital': [re.sub(r'\s+', ' ', title.text).strip() for title in titles_ital],
             }
             # append dictionary to list
             bibl_data.append(bibl_entry)
@@ -52,18 +53,19 @@ def extract_bibl(file):
 
 def s2_request(bibl_data):
     ''' Requesting Semantic Scholar with the title of citation '''
-    for bibl in bibl_data:
+    for bibl_entry in bibl_data:
         query_params = {
-            "query": bibl['titles_quotes'] if bibl['titles_quotes'] else None,
+            "query": bibl_entry['xml_titles_quotes'] if bibl_entry['xml_titles_quotes'] else None,
             "fields": "title,authors,publicationDate",
-            # "year": "-2022" <- This could be useful if we can get the year 
+            # "year": "-2022" <- This could be useful if we can get the year
             # standardized for each citation?
         }
-        logging.info("Requested Title: %s", bibl['titles_quotes'][0] if bibl['titles_quotes'] else None)
-        # GET request trying to match the title. I was seeing in many (but not all) 
+        logging.info("Requested Title: %s",
+                      bibl_entry['xml_titles_quotes'][0] if bibl_entry['xml_titles_quotes'] else None)
+        # GET request trying to match the title. I was seeing in many (but not all)
         # cases the title was in the <title rend:quotes> tag
         response = requests.get("https://api.semanticscholar.org/graph/v1/paper/search/match",
-                                params=query_params, timeout=10)
+                                params=query_params, timeout=15)
         # Check response status
         if response.status_code == 200:
             response_data = response.json()
@@ -73,16 +75,26 @@ def s2_request(bibl_data):
             query_params = {
                 "fields": "citationStyles"
             }
-            detail_response = requests.get(f"https://api.semanticscholar.org/graph/v1/paper/{paper_id}", params=query_params, timeout=10)
+            detail_response = requests.get(f"https://api.semanticscholar.org/graph/v1/paper/{paper_id}", params=query_params, timeout=15)
             detail_data = detail_response.json()
-            # Logging data here but maybe we do some process
             logging.info("Response Received: %s", response_data)
             logging.info("Detail Response: %s", detail_data)
+            # Add the information to the dictionary object of the citation
+            bibl_entry.update(response_data['data'][0])
+            bibl_entry.update(detail_data)
+
+            # if response.status_code == 429:
+            #     retry_after = response.headers.get('Retry-After')
+            #     print(retry_after)
         else:
             logging.info("Response Failed: %s: %s", response.status_code, response.text)
+            # if response.status_code == 429:
+            #     retry_after = response.headers.get('Retry-After')
+            #     print(retry_after)
         # Was getting 429 error of too many requests.
         # Temporary stop gap but would probably need exponential backoff and retry
-        time.sleep(5)
+        # time.sleep(5)
+    return bibl_data
 
 def main():
     ''' Main function '''
@@ -95,7 +107,9 @@ def main():
         help='The DHQ XML file')
     args = parser.parse_args()
     bibl_data = extract_bibl(args.file)
-    s2_request(bibl_data)
+    bibl_data = s2_request(bibl_data)
+    with open('bibl_data.json', 'w', encoding='utf-8') as f:
+        json.dump(bibl_data, f)
 
 if __name__ == "__main__":
     main()
