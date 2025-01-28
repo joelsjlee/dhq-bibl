@@ -34,7 +34,7 @@ def extract_bibl(file):
             # grab the xml_id, label, and titles, and create a ref_id
             ref_id = Path(file).stem + '_ref_' + str(counter)
             counter += 1
-            xml_id = bibl.get('xml:id')
+            xml_id = bibl.get('{http://www.w3.org/XML/1998/namespace}id')
             label = bibl.get('label') 
             titles_quotes = bibl.xpath('.//tei:title[@rend="quotes"]', namespaces=namespaces)
             titles_ital = bibl.xpath('.//tei:title[@rend="italic"]', namespaces=namespaces)

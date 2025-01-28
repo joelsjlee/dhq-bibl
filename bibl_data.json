@@ -1,7 +1,7 @@
 [
     {
         "ref_id": "000585_ref_0",
-        "xml_id": null,
+        "xml_id": "crymble2016",
         "xml_label": "Crymble 2016",
         "xml_titles_quotes": [
             "Identifying and Removing Gender Barriers in Open Learning Communities:"
@@ -19,7 +19,7 @@
                 "name": "Adam Crymble"
             }
         ],
-        "matchScore": 176.94543,
+        "matchScore": 176.94359,
         "citationStyles": {
             "bibtex": "@Inproceedings{Crymble2016IdentifyingAR,\n author = {Adam Crymble},\n title = {Identifying and Removing Gender Barriers in Open Learning Communities: The Programming Historian},\n year = {2016}\n}\n"
         }
@@ -47,14 +47,14 @@
                 "name": "Phan Thi Le Thuyen"
             }
         ],
-        "matchScore": 59.926464,
+        "matchScore": 60.099358,
         "citationStyles": {
             "bibtex": "@Conference{Hung2024BuildingAM,\n author = {Vo Trung Hung and Phan Thi Le Thuyen},\n booktitle = {2024 9th International Conference on Applying New Technology in Green Buildings (ATiGB)},\n journal = {2024 9th International Conference on Applying New Technology in Green Buildings (ATiGB)},\n pages = {6-11},\n title = {Building A Multilingual Guide System on Mobile Devices at Danang Museum},\n year = {2024}\n}\n"
         }
     },
     {
         "ref_id": "000585_ref_2",
-        "xml_id": null,
+        "xml_id": "gibbs2015",
         "xml_label": "Gibbs 2015",
         "xml_titles_quotes": [
             "Editorial Sustainability and Open Peer Review at"
@@ -66,7 +66,7 @@
     },
     {
         "ref_id": "000585_ref_3",
-        "xml_id": null,
+        "xml_id": "gil2015",
         "xml_label": "Gil 2015",
         "xml_titles_quotes": [
             "The User, the Learner and the Machines We Make,"
@@ -77,7 +77,7 @@
     },
     {
         "ref_id": "000585_ref_4",
-        "xml_id": null,
+        "xml_id": "isasi2021",
         "xml_label": "Isasi and Rojas Castro 2021",
         "xml_titles_quotes": [
             "\u00bfSin equivalencia? Una reflexi\u00f3n sobre la traducci\u00f3n al espa\u00f1ol de recursos educativos abiertos."
@@ -98,14 +98,14 @@
                 "name": "Antonio Rojas Castro"
             }
         ],
-        "matchScore": 311.22974,
+        "matchScore": 312.42026,
         "citationStyles": {
             "bibtex": "@Article{Isasi2021SinEU,\n author = {Jennifer Isasi and Antonio Rojas Castro},\n booktitle = {Hispania},\n journal = {Hispania},\n pages = {613 - 624},\n title = {\u00bfSin equivalencia? Una reflexi\u00f3n sobre la traducci\u00f3n al espa\u00f1ol de recursos educativos abiertos},\n volume = {104},\n year = {2021}\n}\n"
         }
     },
     {
         "ref_id": "000585_ref_5",
-        "xml_id": null,
+        "xml_id": "lecher2019",
         "xml_label": "Lecher 2019",
         "xml_titles_quotes": [
             "GitHub Will Keep Selling Software to ICE, Leaked Email Says."
@@ -116,7 +116,7 @@
     },
     {
         "ref_id": "000585_ref_6",
-        "xml_id": null,
+        "xml_id": "lincoln2017",
         "xml_label": "Lincoln 2017",
         "xml_titles_quotes": [
             "Infrastructure for Collaboration: Catching Dead Links And Errors,"
@@ -133,14 +133,14 @@
                 "name": "M. Lincoln"
             }
         ],
-        "matchScore": 235.56235,
+        "matchScore": 235.5627,
         "citationStyles": {
             "bibtex": "@Article{Lincoln2017InfrastructureFC,\n author = {M. Lincoln},\n journal = {The Programming Historian},\n title = {Infrastructure for Collaboration: Catching Dead Links And Errors},\n year = {2017}\n}\n"
         }
     },
     {
         "ref_id": "000585_ref_7",
-        "xml_id": null,
+        "xml_id": "lincoln2020",
         "xml_label": "Lincoln 2020",
         "xml_titles_quotes": [
             "Multilingual Jekyll: How"
@@ -188,14 +188,14 @@
                 "name": "Eleni Kelasidi"
             }
         ],
-        "matchScore": 48.600452,
+        "matchScore": 48.60057,
         "citationStyles": {
             "bibtex": "@Article{Botta2024FrameworkFR,\n author = {David Botta and Luca Ebner and Andrej Studer and Victor Reijgwart and Roland Siegwart and Eleni Kelasidi},\n booktitle = {arXiv.org},\n journal = {ArXiv},\n title = {Framework for Robust Localization of UUVs and Mapping of Net Pens},\n volume = {abs/2409.15475},\n year = {2024}\n}\n"
         }
     },
     {
         "ref_id": "000585_ref_9",
-        "xml_id": null,
+        "xml_id": "niche2009",
         "xml_label": "NiCHE 2009",
         "xml_titles_quotes": [
             "The Programming Historian,"
@@ -212,14 +212,14 @@
                 "name": "Jeffrey W. McClurken"
             }
         ],
-        "matchScore": 87.00687,
+        "matchScore": 87.00917,
         "citationStyles": {
             "bibtex": "@Article{McClurken2016ThePH,\n author = {Jeffrey W. McClurken},\n journal = {The Journal of American History},\n title = {The Programming Historian},\n volume = {103},\n year = {2016}\n}\n"
         }
     },
     {
         "ref_id": "000585_ref_10",
-        "xml_id": null,
+        "xml_id": "ph246",
         "xml_label": "PH Issue 246",
         "xml_titles_quotes": [
             "Spanish translation - Issue #246,"
@@ -230,7 +230,7 @@
     },
     {
         "ref_id": "000585_ref_11",
-        "xml_id": null,
+        "xml_id": "ratto2011",
         "xml_label": "Ratto 2011",
         "xml_titles_quotes": [
             "Critical Making: Conceptual and Material Studies in Technology and Social Life,"
@@ -247,14 +247,14 @@
                 "name": "M. Ratto"
             }
         ],
-        "matchScore": 227.72977,
+        "matchScore": 229.09558,
         "citationStyles": {
             "bibtex": "@Article{Ratto2011CriticalMC,\n author = {M. Ratto},\n booktitle = {The Information Society},\n journal = {The Information Society},\n pages = {252 - 260},\n title = {Critical Making: Conceptual and Material Studies in Technology and Social Life},\n volume = {27},\n year = {2011}\n}\n"
         }
     },
     {
         "ref_id": "000585_ref_12",
-        "xml_id": null,
+        "xml_id": "sichani2019",
         "xml_label": "Sichani et al. 2019",
         "xml_titles_quotes": [
             "Diversity and Inclusion in Digital Scholarship and Pedagogy: The Case of The Programming Historian"
@@ -283,14 +283,14 @@
                 "name": "B. Walsh"
             }
         ],
-        "matchScore": 225.51862,
+        "matchScore": 225.5192,
         "citationStyles": {
             "bibtex": "@Article{Sichani2019DiversityAI,\n author = {Anna-Maria Sichani and J. Baker and Mar\u00eda Jos\u00e9 Afanador-Llach and B. Walsh},\n booktitle = {Insights: The UKSG Journal},\n journal = {Insights the UKSG journal},\n title = {Diversity and inclusion in digital scholarship and pedagogy: the case of The Programming Historian},\n year = {2019}\n}\n"
         }
     },
     {
         "ref_id": "000585_ref_13",
-        "xml_id": null,
+        "xml_id": "smithies2019",
         "xml_label": "Smithies et al. 2019",
         "xml_titles_quotes": [
             "Managing 100 Digital Humanities Projects: Digital Scholarship & Archiving in King\u2019s Digital Lab,"
@@ -307,7 +307,7 @@
                 "name": "James Smithies"
             }
         ],
-        "matchScore": 310.7363,
+        "matchScore": 310.28064,
         "citationStyles": {
             "bibtex": "@Article{Smithies2019Managing1D,\n author = {James Smithies},\n booktitle = {Digital Humanities Quarterly},\n journal = {Digit. Humanit. Q.},\n title = {Managing 100 Digital Humanities Projects: Digital Scholarship & Archiving in King's Digital Lab},\n volume = {13},\n year = {2019}\n}\n"
         }
